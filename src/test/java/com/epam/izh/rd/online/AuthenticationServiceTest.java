@@ -11,7 +11,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.epam.izh.rd.online.Providers.getUser;
 
-public class AunthenticationServiceTest {
+public class AuthenticationServiceTest {
 
     private IAuthenticationService authenticationService;
     private IUserRepository userRepository;
@@ -36,8 +36,7 @@ public class AunthenticationServiceTest {
         User user = getUser();
         userRepository.save(user);
 
-        assertion.assertThrowsWithClassName("NotCorrectPasswordException", () -> authenticationService.login(user.withWrongPassword()),
+        assertion.assertThrowsWithClassName("NotCorrectPasswordException", () -> authenticationService.login(Providers.changePasswordToWrongValue(user)),
                 "Пароль введен неверно!");
     }
-
 }

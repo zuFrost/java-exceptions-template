@@ -31,11 +31,6 @@ public class User {
         this.password = password;
     }
 
-    public User withWrongPassword() {
-        this.setPassword(this.getPassword() + "123");
-        return this;
-    }
-
     @Override
     public String toString() {
         return "User{" +

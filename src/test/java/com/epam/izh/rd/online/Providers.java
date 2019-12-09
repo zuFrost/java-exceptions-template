@@ -45,4 +45,8 @@ public class Providers {
                 arguments(userWithNumberPassword)
         );
     }
+
+    public static User changePasswordToWrongValue(User user) {
+        return new User(user.getLogin(), user.getPassword() + "123");
+    }
 }
