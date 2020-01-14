@@ -39,7 +39,7 @@ public class UserServiceTest {
 
     @Test
     @DisplayName("Тест метода IUserService.register(User user) кейс 2")
-    void testRegisterCase2() {
+    void testRegisterCase2() throws Exception {
         User user = Providers.getUser();
 
         userService.register(user);
