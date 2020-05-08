@@ -63,6 +63,29 @@ public class JavaExceptions {
 //            e.printStackTrace();
 //        }
 
+        //Если мы попытаемся вызвать метод удаления {@link UserRepository#deleteByLogin(String)}
+        //     * пользователем не админом (считаем, что админ имеет логин Admin), то будет выброшено исключение
+        //     * {@link UnsupportedOperationException} из репозитория.
+        User userTestOne = new User("login1", "password");
+        User userTestTwo = new User("login2", "password");
+        User userTestTree = new User("login3", "123password123");
+        User userTestFore = new User("login4", "pass134word");
+        try {
+            userService.register(userTestOne);
+            userService.register(userTestTwo);
+            userService.register(userTestTree);
+            userService.register(userTestFore);
+        } catch (UserAlreadyRegisteredException e) {
+            e.printStackTrace();
+        } catch (SimplePasswordException e) {
+            e.printStackTrace();
+        }
+
+        userService.delete("Admin");
+        userService.delete("login1");
+        userService.delete("login2");
+
+
 
     }
 

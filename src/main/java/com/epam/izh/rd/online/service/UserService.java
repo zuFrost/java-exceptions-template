@@ -81,7 +81,12 @@ public class UserService implements IUserService {
 
         // Здесь необходимо сделать доработку метод
 
-        userRepository.deleteByLogin(login);
+        try {
+            userRepository.deleteByLogin(login);
+        } catch (UnsupportedOperationException e) {
+            e.printStackTrace();
+            throw new NotAcc
+        }
 
         // Здесь необходимо сделать доработку метода
 
