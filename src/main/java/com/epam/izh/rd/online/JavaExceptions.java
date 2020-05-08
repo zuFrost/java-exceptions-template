@@ -5,7 +5,9 @@ import com.epam.izh.rd.online.entity.User;
 import com.epam.izh.rd.online.exception.NotAccessException;
 import com.epam.izh.rd.online.exception.SimplePasswordException;
 import com.epam.izh.rd.online.exception.UserAlreadyRegisteredException;
+import com.epam.izh.rd.online.exception.UserNotFoundException;
 import com.epam.izh.rd.online.repository.UserRepository;
+import com.epam.izh.rd.online.service.AuthenticationService;
 import com.epam.izh.rd.online.service.UserService;
 
 public class JavaExceptions {
@@ -13,6 +15,7 @@ public class JavaExceptions {
     public static void main(String[] args) {
         UserRepository userRepository = new UserRepository();
         UserService userService = new UserService(userRepository);
+        AuthenticationService authenticationService = new AuthenticationService(userRepository);
 
 
 
@@ -90,7 +93,21 @@ public class JavaExceptions {
 //            e.printStackTrace();
 //        }
 
-
+        User userTestOne = new User("login1", "password");
+        User userTestTwo = new User("login2", "password");
+        try {
+            userService.register(userTestOne);
+        } catch (UserAlreadyRegisteredException e) {
+            e.printStackTrace();
+        } catch (SimplePasswordException e) {
+            e.printStackTrace();
+        }
+        try {
+            authenticationService.login(userTestOne);
+            authenticationService.login(userTestTwo);
+        } catch (UserNotFoundException e) {
+            e.printStackTrace();
+        }
 
 
     }
