@@ -2,9 +2,10 @@ package com.epam.izh.rd.online;
 
 
 import com.epam.izh.rd.online.entity.User;
+import com.epam.izh.rd.online.exception.NotAccessException;
 import com.epam.izh.rd.online.exception.SimplePasswordException;
-import com.epam.izh.rd.online.repository.UserRepository;
 import com.epam.izh.rd.online.exception.UserAlreadyRegisteredException;
+import com.epam.izh.rd.online.repository.UserRepository;
 import com.epam.izh.rd.online.service.UserService;
 
 public class JavaExceptions {
@@ -81,10 +82,13 @@ public class JavaExceptions {
             e.printStackTrace();
         }
 
-        userService.delete("Admin");
-        userService.delete("login1");
-        userService.delete("login2");
-
+        try {
+            userService.delete("Admin");
+            userService.delete("login1");
+            userService.delete("login2");
+        } catch (NotAccessException e) {
+            e.printStackTrace();
+        }
 
 
     }
