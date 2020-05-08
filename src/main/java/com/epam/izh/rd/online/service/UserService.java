@@ -46,15 +46,12 @@ public class UserService implements IUserService {
         }
 
         if (userRepository.findByLogin(user.getLogin()) != null) {
-//            String userLogin = user.getLogin();
             throw new UserAlreadyRegisteredException("Пользователь с логином " + user.getLogin() + " уже зарегистрирован");
         }
 
         if (user.getPassword().matches("\\d+")) {
             throw new SimplePasswordException("Пароль не соответствует требованиям безопасности");
         }
-//        System.out.println("pass = " + user.getPassword());
-
 
         // Если все проверки успешно пройдены, сохраняем пользователя в базу
         return userRepository.save(user);

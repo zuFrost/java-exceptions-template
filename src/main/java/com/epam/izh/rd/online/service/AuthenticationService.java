@@ -43,7 +43,6 @@ public class AuthenticationService implements IAuthenticationService {
         // Здесь необходимо реализовать перечисленные выше проверки
         //
 
-
         // Устанавливаем найденного пользователя, который прошел все проверки, как вошедшего в систему.
         CurrentUserManager.setCurrentLoggedInUser(foundUser);
 
