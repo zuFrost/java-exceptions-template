@@ -2,10 +2,7 @@ package com.epam.izh.rd.online;
 
 
 import com.epam.izh.rd.online.entity.User;
-import com.epam.izh.rd.online.exception.NotAccessException;
-import com.epam.izh.rd.online.exception.SimplePasswordException;
-import com.epam.izh.rd.online.exception.UserAlreadyRegisteredException;
-import com.epam.izh.rd.online.exception.UserNotFoundException;
+import com.epam.izh.rd.online.exception.*;
 import com.epam.izh.rd.online.repository.UserRepository;
 import com.epam.izh.rd.online.service.AuthenticationService;
 import com.epam.izh.rd.online.service.UserService;
@@ -105,7 +102,7 @@ public class JavaExceptions {
         try {
             authenticationService.login(userTestOne);
             authenticationService.login(userTestTwo);
-        } catch (UserNotFoundException e) {
+        } catch (UserNotFoundException | NotCorrectPasswordException e) {
             e.printStackTrace();
         }
 
